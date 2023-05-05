@@ -36,10 +36,13 @@ fig = px.scatter_mapbox(
     color=selected_column, 
     color_continuous_scale="Viridis", 
     zoom=11,
-    height=600
+    height=600,
+    width=1000,
+    hover_name="price_in_dollar",
+    hover_data=["amenities", "price_in_dollar", "five_day_dollar_price"]
 )
 fig.update_layout(mapbox_style="open-street-map")
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, use_container_width=False)
 
 # Display filtered data in a table
 st.write("Filtered Airbnb Listings dataframe:")
