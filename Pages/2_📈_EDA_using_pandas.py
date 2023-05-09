@@ -20,7 +20,7 @@ st.write(
     """This web page app is based on this blog [here](https://blog.streamlit.io/auto-generate-a-dataframe-filtering-ui-in-streamlit-with-filter_dataframe/). 
     """
 )
-st.write("Use the dataframe below the map to filter your airbnb listings. You can also use the filter on the left to filter the listings by color on the map")
+st.write("Use the filter on the sidebar to filter the listings by color on the map. You can also use the multiselect box to filter the airbnb listings on the dataframe below the map")
 df = pd.read_csv("WK2_Airbnb_Amsterdam_listings_proj_solution.csv", index_col=0)
 
 
