@@ -17,7 +17,9 @@ def home():
     
     st.markdown("# Welcome to my AirBnB Data Analysis web app")
     st.write(""" 
-        A 2-week project from [Corise](https://corise.com/course/python-for-data-science). As a Data Scientist for the Amsterdam area at Airbnb, the objective is to analyze the data, make informed decisions and provide a data analysis platform with a wide range of tools and resources, including an interactive visualizations that allows you to explore different aspects of your listings such as price, location, and availability""")
+        A 2-week project from [Corise](https://corise.com/course/python-for-data-science) using Numpy and Pandas for exploratory data analysis.""")
+    st.write("""
+        As a Data Scientist for the Amsterdam area at Airbnb, the objective is to help visitors to make an informed choice of which airbnb to stay by analyzing all the airbnb data close to a location they would like to visit. The aim is to showcase a data analysis platform with resources like price range and type of rooms for users to choose from. This platform should include interactive pages and visualizations that allows users to explore different aspects of the airbnb listings such as price, location, and availability""")
     img = Image.open("Images/Luxury-Airbnb-Apartment-Amsterdam.jpg")
     new_image = img.resize((900,600))
     st.image(new_image, caption = 'Luxury Airbnb apartment', use_column_width="always")
@@ -26,20 +28,19 @@ def home():
        ### Summary of projects:
        ## Week 1
         - Exploratory data analysis using Numpy
-        - Data Cleaning
+        - Data cleaning and analysis
+        - Exploring Amsterdam AirBnB dataset using metres from the chosen location and price range as filters. (Use sidebar sliders to filter data)
+        - Include a download option for the filtered dataframe
         - Web app development and deployment on streamlit
-        - Exploring Amsterdam AirBnB dataset using metres to location and price range as filters. (Use 2 sidebar sliders to filter data)
-        - Used the experimental data editor and download option for the dataframe.
         
         ## Week 2
         - Exploratory Data Analysis Using Pandas
         - Interactive visuals for exploring different filters for AirBnB listings such as Neighborhood, bedrooms, beds etc.
+        - Map visualization
+        - Added a multiselect option to filter dataframe
+        - Include a theme and multi-page configuration
+        - Include download option for filtered CSV dataframe
         - Web app development and deployment
-        - Map visualization and ability to change map styles
-        - Ability to change colour marker on map based on column data.
-        - Added background image
-        - Changed css styling, theme and page configurations
-        - Ability to download filtered CSV file
         """
         )
     
