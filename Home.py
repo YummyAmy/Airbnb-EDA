@@ -1,13 +1,6 @@
 import streamlit as st
 from PIL import Image
 
-hide_menu = """
-    <style>
-        header {visibility: hidden;}
-    </style>
-"""
-st.markdown(hide_menu, unsafe_allow_html = True)
-
 #set page configuration
 st.set_page_config(
     page_title = "Home",
@@ -17,6 +10,11 @@ st.set_page_config(
 
 )
 #set theme
+hide_menu = """
+    <style>
+        header {visibility: hidden;}
+    </style>
+"""
 
 #define function for each page
 def home():
@@ -54,6 +52,7 @@ def home():
     st.sidebar.markdown("[LinkedIn](https://www.linkedin.com/in/ameti-obong-e-395a25111)")
     st.sidebar.markdown('<a href="mailto:ameikpe@yahoo.com">E-mail</a>', unsafe_allow_html=True)
     st.sidebar.markdown("[CoRise Course](https://corise.com/course/python-for-data-science)")
+    st.markdown(hide_menu, unsafe_allow_html = True)
 
     # call the function
 if __name__ == '__main__':
