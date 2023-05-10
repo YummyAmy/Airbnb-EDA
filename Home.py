@@ -1,6 +1,12 @@
 import streamlit as st
 from PIL import Image
 
+hide_menu = """
+    <style>
+        header {visibility: hidden;}
+    </style>
+"""
+st.markdown(hide_menu, unsafe_allow_html = True)
 
 #set page configuration
 st.set_page_config(
