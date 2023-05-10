@@ -19,7 +19,7 @@ hide_decoration_bar_style = '''
 #define function for each page
 def home():
     
-    st.markdown("# Welcome to my AirBnB Data Analysis web app")
+    st.markdown("# Welcome to my Airbnb Data Analysis web app")
     st.write(""" 
         A 2-week project from [Corise](https://corise.com/course/python-for-data-science) using Numpy and Pandas for exploratory data analysis.""")
     st.write("""
