@@ -16,10 +16,7 @@ st.set_page_config(
 
 #Display title and text
 st.markdown("# Data Analysis and visualization using Pandas")
-st.write(
-    """This web page app is based on this blog [here](https://blog.streamlit.io/auto-generate-a-dataframe-filtering-ui-in-streamlit-with-filter_dataframe/). 
-    """
-)
+
 st.write("Use the filter on the sidebar to filter the listings by color on the map. You can also use the multiselect box to filter the airbnb listings on the dataframe below the map")
 df = pd.read_csv("WK2_Airbnb_Amsterdam_listings_proj_solution.csv", index_col=0)
 
@@ -136,3 +133,7 @@ st.sidebar.download_button(
     data=df.to_csv(index=False),
     file_name="WK2_Airbnb_Amsterdam_listings_proj_solution.csv",
     mime="text/csv",)
+st.write(
+    """This web page app is based on this blog [here](https://blog.streamlit.io/auto-generate-a-dataframe-filtering-ui-in-streamlit-with-filter_dataframe/). 
+    """
+)
