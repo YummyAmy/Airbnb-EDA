@@ -19,7 +19,7 @@ def home():
     st.write(""" 
         A 2-week project from [Corise](https://corise.com/course/python-for-data-science) using Numpy and Pandas for exploratory data analysis.""")
     st.write("""
-        As a Data Scientist for the Amsterdam area at Airbnb, the objective is to help visitors to make an informed choice of which airbnb to stay by analyzing all the airbnb data close to a location they would like to visit. The aim is to showcase a data analysis platform with resources like price range and type of rooms for users to choose from. This platform should include interactive pages and visualizations that allows users to explore different aspects of the airbnb listings such as price, location, and availability""")
+        As a Data Scientist for the Amsterdam area at Airbnb, the objective is to help visitors to make an informed choice of which airbnb to stay by analyzing all the airbnb data close to a location they would like to visit. The aim is to showcase an analytical platform with resources like price range and type of rooms for users to choose from. This platform includes two interactive pages and map visualizations that allows users to explore different aspects of the airbnb listings such as price, location, and availability""")
     img = Image.open("Images/Luxury-Airbnb-Apartment-Amsterdam.jpg")
     new_image = img.resize((900,600))
     st.image(new_image, caption = 'Luxury Airbnb apartment', use_column_width="always")
