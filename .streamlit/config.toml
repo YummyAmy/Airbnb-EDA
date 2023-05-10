@@ -5,7 +5,7 @@ base="light"
 primaryColor = "#FF4B4B" #ash green
 
 # Background color for the main container.
-backgroundColor = "#383D3A" #ash green
+backgroundColor = "#34413E" #ash green
 
 # Used as the background for most widgets. Examples of widgets with this background are st.sidebar
 secondaryBackgroundColor =  "#34413E"
