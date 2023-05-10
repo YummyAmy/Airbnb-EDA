@@ -10,11 +10,11 @@ st.set_page_config(
 
 )
 #set theme
-hide_menu = """
+hide_decoration_bar_style = '''
     <style>
         header {visibility: hidden;}
     </style>
-"""
+'''
 
 #define function for each page
 def home():
@@ -52,7 +52,7 @@ def home():
     st.sidebar.markdown("[LinkedIn](https://www.linkedin.com/in/ameti-obong-e-395a25111)")
     st.sidebar.markdown('<a href="mailto:ameikpe@yahoo.com">E-mail</a>', unsafe_allow_html=True)
     st.sidebar.markdown("[CoRise Course](https://corise.com/course/python-for-data-science)")
-    st.markdown(hide_menu, unsafe_allow_html = True)
+    st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
 
     # call the function
 if __name__ == '__main__':
