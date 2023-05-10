@@ -15,7 +15,7 @@ st.set_page_config(
 )
 
 #Display title and text
-st.markdown("# Data Analysis and visualization using Pandas")
+st.markdown("# Week 2 - Data Analysis and visualization using Pandas")
 st.write(
     """This web page app is based on this blog [here](https://blog.streamlit.io/auto-generate-a-dataframe-filtering-ui-in-streamlit-with-filter_dataframe/). 
     """
