@@ -14,7 +14,7 @@ hide_menu = """
 """
 
 # Display title and text
-st.title("Week 1 - Data analysis and visualization using Numpy")
+st.title("Data analysis and visualization using Numpy")
 st.markdown("The map below shows all Airbnb listings in Amsterdam, including a chosen location. The Red dots represent listings close to the chosen location and the light blue dot represent the chosen location to visit. Use the sliders to filter the data based on price and meters from chosen location.")
 st.markdown(hide_menu, unsafe_allow_html = True)
 # Read dataframe
