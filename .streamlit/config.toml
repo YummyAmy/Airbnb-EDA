@@ -1,6 +1,14 @@
 [theme]
 base="light"
-primaryColor="#e4dddd"
-backgroundColor="#d6a570"
-secondaryBackgroundColor="#925719"
-textColor = "#31333F"
+# Used to style primary interface elements. It's the color displayed most frequently across your app's
+# screens and components. Examples of widgets using this color are st.slider and st.checkbox.
+primaryColor = "#FF4B4B" #ash green
+
+# Background color for the main container.
+backgroundColor = "#383D3A" #ash green
+
+# Used as the background for most widgets. Examples of widgets with this background are st.sidebar
+secondaryBackgroundColor =  "#34413E"
+
+# Font color for the page.
+textColor = "#D4D6ED" #black
