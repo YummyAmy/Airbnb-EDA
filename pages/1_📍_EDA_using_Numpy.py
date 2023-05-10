@@ -14,7 +14,7 @@ st.markdown("The map below shows all Airbnb listings in Amsterdam, including a c
 
 # Read dataframe
 dataframe = pd.read_csv(
-    "/Users/yummy/Desktop/CoRise/WK1_Airbnb_Amsterdam_listings_proj_solution.csv",
+    "WK1_Airbnb_Amsterdam_listings_proj_solution.csv",
     names=[
         "Airbnb Listing ID",
         "Price",
