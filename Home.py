@@ -49,7 +49,7 @@ def home():
         )
     
     st.sidebar.title("Connect with me")
-    st.sidebar.markdown("[LinkedIn](https://www.linkedin.com/in/ameti-obong-e-395a25111)")
+    st.sidebar.markdown("[LinkedIn](https://www.linkedin.com/in/ameti-obong-u-395a25111/)")
     st.sidebar.markdown('<a href="mailto:ameikpe@yahoo.com">E-mail</a>', unsafe_allow_html=True)
     st.sidebar.markdown("[CoRise Course](https://corise.com/course/python-for-data-science)")
     st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
