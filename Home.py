@@ -52,7 +52,7 @@ def home():
     st.sidebar.markdown("[LinkedIn](https://www.linkedin.com/in/ameti-obong-u-395a25111/)")
     st.sidebar.markdown('<a href="mailto:ameikpe@yahoo.com">E-mail</a>', unsafe_allow_html=True)
     st.sidebar.markdown("[Tableau Profile](https://public.tableau.com/app/profile/amyu)")
-    st.sidebar.markdown("[CoRise Course](https://corise.com/course/python-for-data-science)")
+    st.sidebar.markdown("[CoRise Course](https://corise.com/course/intro-to-numpy-and-pandas)")
     st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
 
     # call the function
