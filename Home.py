@@ -23,7 +23,7 @@ def home():
     st.write(""" 
         A 2-week project from [Corise](https://corise.com/course/intro-to-numpy-and-pandas) using Numpy and Pandas for exploratory data analysis.""")
     st.write("""
-        As a Data Scientist for the Amsterdam area at Airbnb, the objective is to help visitors to make an informed choice of which airbnb to stay by analyzing all the airbnb data close to a location they would like to visit. The aim is to showcase an analytical platform with resources like price range and type of rooms for users to choose from. This platform includes two interactive pages and map visualizations that allows users to explore different aspects of the airbnb listings such as price, location, and availability""")
+        As a Data Scientist for the Amsterdam area at Airbnb, the objective is to help visitors to make an informed choice of which airbnb to stay by analyzing the data close to a location they would like to visit. This is an analytical platform with resources like price range and type of rooms for users to choose from. It includes two interactive pages and map visualizations that allows users to explore different aspects of the airbnb listings such as price, location, and availability""")
     img = Image.open("Images/Luxury-Airbnb-Apartment-Amsterdam.jpg")
     new_image = img.resize((900,600))
     st.image(new_image, caption = 'Luxury Airbnb apartment', use_column_width="always")
@@ -43,7 +43,7 @@ def home():
         - Map visualization
         - Added a multiselect option to filter dataframe
         - Include a theme and multi-page configuration
-        - Include download option for filtered CSV dataframe
+        - Include a download option for the filtered CSV dataframe
         - Web app development and deployment
         """
         )
