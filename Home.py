@@ -47,18 +47,14 @@ def home():
         - Web app development and deployment
         """
         )
-    
-    st.sidebar.title("Connect with me")
+    st.sidebar.title("Connect")
     st.sidebar.markdown("[Linktree](https://linktr.ee/ameusifoh)")
     st.sidebar.markdown("[LinkedIn](https://www.linkedin.com/in/ameti-obong-u-395a25111/)")
-<<<<<<< HEAD
    #st.sidebar.markdown('<a href="mailto:ameikpe@yahoo.com">E-mail</a>', unsafe_allow_html=True)
-=======
-   # st.sidebar.markdown('<a href="mailto:ameikpe@yahoo.com">E-mail</a>', unsafe_allow_html=True)
->>>>>>> 53ca55e24ce086a9fbb4487a58a6571cf4d82134
     st.sidebar.markdown("[Tableau Profile](https://public.tableau.com/app/profile/amyu)")
     st.sidebar.markdown("[CoRise Course](https://uplimit.com/course/intro-to-numpy-and-pandas)")
     st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
+    
 
     # call the function
 if __name__ == '__main__':
