@@ -74,7 +74,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, confu
 
 # Function to load data from GitHub
 def load_data_from_github():
-    base_url = "https://raw.githubusercontent.com/yourusername/yourrepo/main/path/to/csv/"
+    base_url = "https://github.com/YummyAmy/Airbnb-EDA/tree/main/archive%20(3)"
     file_paths = {
         'circuits': base_url + 'circuits.csv',
         'constructor_results': base_url + 'constructor_results.csv',
@@ -173,6 +173,213 @@ with tab1:
     # st.sidebar.markdown("[Tableau Profile](https://public.tableau.com/app/profile/amyu)")
     st.sidebar.markdown("[CoRise Course](https://uplimit.com/course/intro-to-numpy-and-pandas)")
     st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
+
+# Tab 2: F1 Analysis
+with tab2:
+    st.header("F1 Analysis")
+
+    # Load data
+    dataframes = load_data_from_github()
+
+    # Inspect data
+    st.subheader("Data Inspection")
+    def inspect_data(dataframes):
+        inspection_results = {}
+        for name, df in dataframes.items():
+            inspection_results[name] = {
+                'shape': df.shape,
+                'missing_values': df.isnull().sum(),
+            }
+        return inspection_results
+
+    inspection_results = inspect_data(dataframes)
+    st.write("Data Inspection Results:")
+    st.write(inspection_results)
+
+    # Driver nationality distribution
+    st.subheader("Driver Nationality Distribution")
+    drivers = dataframes['drivers']
+    nationality_distribution = drivers['nationality'].value_counts()
+    plt.figure(figsize=(10, 6))
+    sns.barplot(x=nationality_distribution.values, y=nationality_distribution.index)
+    plt.title('Nationality Distribution of Drivers')
+    plt.xlabel('Number of drivers')
+    plt.ylabel('Nationality')
+    st.pyplot(plt)
+
+    # Aggregate total points for each driver
+    st.subheader("Top 10 Drivers by Total Points")
+    driver_points = dataframes['results'].groupby('driverId')['points'].sum().reset_index()
+    driver_points_sorted = driver_points.sort_values(by='points', ascending=False)
+    top_10_drivers = driver_points_sorted.head(10)
+    top_10_drivers_details = top_10_drivers.merge(dataframes['drivers'], on='driverId')
+    driver_names = top_10_drivers_details['forename'] + ' ' + top_10_drivers_details['surname']
+    driver_points = top_10_drivers_details['points']
+
+    plt.figure(figsize=(6, 3))
+    plt.barh(driver_names, driver_points, color='skyblue')
+    plt.xlabel('Total Points')
+    plt.ylabel('Drivers')
+    plt.title('Top 10 Drivers by Total Points')
+    plt.gca().invert_yaxis()
+    st.pyplot(plt)
+
+    # Driver performance by constructor
+    st.subheader("Driver Performance by Constructor")
+    results = dataframes['results']
+    constructors = dataframes['constructors']
+    driver_constructor_points = results.groupby(['driverId', 'constructorId'])['points'].sum().reset_index()
+    driver_constructor_points = driver_constructor_points.merge(drivers[['driverId', 'forename', 'surname']], on='driverId')
+    driver_constructor_points = driver_constructor_points.merge(constructors[['constructorId', 'name']], on='constructorId')
+    top_10_drivers = driver_constructor_points.groupby('driverId')['points'].sum().reset_index().sort_values(by='points', ascending=False).head(10)
+    top_10_driver_constructor_points = driver_constructor_points[driver_constructor_points['driverId'].isin(top_10_drivers['driverId'])]
+
+    plt.figure(figsize=(8, 6))
+    sns.barplot(x='surname', y='points', hue='name', data=top_10_driver_constructor_points)
+    plt.title('Points Scored by Top 10 Drivers for Each Constructor')
+    plt.xlabel('Driver')
+    plt.ylabel('Total Points')
+    plt.legend(title='Constructor', bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    st.pyplot(plt)
+
+    # Points scored by top 10 drivers over seasons
+    st.subheader("Points Scored by Top 10 Drivers Over Seasons")
+    top_10_driver_ids = top_10_drivers['driverId'].tolist()
+    top_10_results = dataframes['results'][dataframes['results']['driverId'].isin(top_10_driver_ids)]
+    top_10_results = top_10_results.merge(dataframes['races'][['raceId', 'year']], on='raceId')
+    driver_season_points = top_10_results.groupby(['driverId', 'year'])['points'].sum().reset_index()
+    driver_season_points = driver_season_points.merge(drivers[['driverId', 'forename', 'surname']], on='driverId')
+    driver_season_pivot = driver_season_points.pivot(index='year', columns='surname', values='points')
+
+    plt.figure(figsize=(8, 5))
+    driver_season_pivot.plot(kind='line', marker='o', ax=plt.gca())
+    plt.title('Points Scored by Top 10 Drivers Over Seasons')
+    plt.xlabel('Season')
+    plt.ylabel('Total Points')
+    plt.legend(title='Driver')
+    plt.grid(True)
+    st.pyplot(plt)
+
+    # Win rates of top 5 drivers
+    st.subheader("Win Rates of Top 5 Drivers")
+    driver_races = results.groupby('driverId')['raceId'].count().reset_index()
+    driver_races.rename(columns={'raceId': 'total_races'}, inplace=True)
+    driver_wins = results[results['positionOrder'] == 1].groupby('driverId')['raceId'].count().reset_index()
+    driver_wins.rename(columns={'raceId': 'total_wins'}, inplace=True)
+    driver_performance = driver_races.merge(driver_wins, on='driverId', how='left')
+    driver_performance['total_wins'].fillna(0, inplace=True)
+    driver_performance['win_rate'] = driver_performance['total_wins'] / driver_performance['total_races']
+    top_5_drivers = driver_performance.sort_values(by='total_wins', ascending=False).head(5)
+    top_5_drivers = top_5_drivers.merge(drivers[['driverId', 'forename', 'surname']], on='driverId')
+    top_5_drivers = top_5_drivers.sort_values(by='win_rate', ascending=True)
+
+    plt.figure(figsize=(5, 4))
+    sns.barplot(x='surname', y='win_rate', data=top_5_drivers, palette='viridis')
+    plt.title('Win Rates of Top 5 Drivers')
+    plt.xlabel('Driver')
+    plt.ylabel('Win Rate')
+    plt.ylim(0, 1)
+    plt.tight_layout()
+    st.pyplot(plt)
+
+    # Correlation matrices
+    st.subheader("Correlation Matrices")
+    results_numeric = results.select_dtypes(include=['float64', 'int64'])
+    corr = results_numeric.corr()
+
+    plt.figure(figsize=(10, 8))
+    ax = sns.heatmap(corr, annot=False, cmap='coolwarm', linewidths=0.5, cbar_kws={"shrink": .8})
+    for i in range(corr.shape[0]):
+        for j in range(corr.shape[1]):
+            ax.text(j+0.5, i+0.5, f'{corr.iloc[i, j]:.2f}', ha='center', va='center', color='black')
+    plt.title('Correlation Matrix for Results')
+    st.pyplot(plt)
+
+    # Pairplots
+    st.subheader("Pairplots for distribution of Results")
+    sns.pairplot(results)
+    plt.suptitle("Pairplot for Results", y=1.02)
+    st.pyplot(plt)
+
+    # Relationship between pitstops and wins
+    st.subheader("Relationship Between Pitstops and Wins")
+    pit_stops = dataframes['pit_stops']
+    avg_pit_stop_duration = pit_stops.groupby(['raceId', 'driverId'])['milliseconds'].mean().reset_index(name='avg_pit_stop_duration')
+    performance = results.merge(avg_pit_stop_duration, on=['raceId', 'driverId'])
+    correlation = performance['avg_pit_stop_duration'].corr(performance['positionOrder'])
+    st.write(f"Correlation between Average Pit Stop Duration and Race Position Order: {correlation}")
+
+    plt.figure(figsize=(10, 6))
+    plt.scatter(performance['avg_pit_stop_duration'], performance['positionOrder'], alpha=0.6)
+    plt.title('Correlation Between Average Pit Stop Duration and Race Position Order')
+    plt.xlabel('Average Pit Stop Duration (milliseconds)')
+    plt.ylabel('Race Position Order')
+    z = np.polyfit(performance['avg_pit_stop_duration'], performance['positionOrder'], 1)
+    p = np.poly1d(z)
+    plt.plot(performance['avg_pit_stop_duration'], p(performance['avg_pit_stop_duration']), "r--")
+    plt.grid(True)
+    st.pyplot(plt)
+
+    # Linear regression
+    st.subheader("Linear Regression")
+    driver_performance['dob'] = pd.to_datetime(driver_performance['dob'])
+    driver_performance['age'] = 2024 - driver_performance['dob'].dt.year
+    features = ['total_races', 'total_wins', 'age']
+    target = 'win_rate'
+    X = driver_performance[features]
+    y = driver_performance[target]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    st.write(f"Mean Squared Error: {mse}")
+    st.write(f"R-squared: {r2}")
+    coefficients = pd.DataFrame(model.coef_, features, columns=['Coefficient'])
+    st.write("Model Coefficients:")
+    st.write(coefficients)
+
+    plt.figure(figsize=(6, 4))
+    sns.scatterplot(x=y_test, y=y_pred)
+    plt.title('Predicted vs. Actual Win Rates')
+    plt.xlabel('Actual Win Rate')
+    plt.ylabel('Predicted Win Rate')
+    plt.plot([0, 1], [0, 1], color='red', linestyle='--')
+    plt.tight_layout()
+    st.pyplot(plt)
+
+    # Decision Tree Model
+    st.subheader("Decision Tree Model")
+    results['win'] = results['positionOrder'].apply(lambda x: 1 if x == 1 else 0)
+    data = results.merge(constructors, on='constructorId')
+    features = ['grid', 'laps', 'milliseconds', 'fastestLapSpeed']
+    target = 'win'
+    for feature in features:
+        data[feature] = pd.to_numeric(data[feature], errors='coerce')
+    data[features] = data[features].fillna(data[features].mean())
+    X = data[features]
+    y = data[target]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+    max_depth = 3
+    model = DecisionTreeClassifier(random_state=42, max_depth=max_depth)
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred)
+    recall = recall_score(y_test, y_pred)
+    conf_matrix = confusion_matrix(y_test, y_pred)
+    st.write(f'Accuracy: {accuracy:.2f}')
+    st.write(f'Precision: {precision:.2f}')
+    st.write(f'Recall: {recall:.2f}')
+    st.write('Confusion Matrix:')
+    st.write(conf_matrix)
+
+    plt.figure(figsize=(14, 5))
+    plot_tree(model, feature_names=features, class_names=['Not Win', 'Win'], filled=True, rounded=True, fontsize=10)
+    st.pyplot(plt)
 
 # # Call the function
 # if __name__ == '__main__':
