@@ -13,7 +13,7 @@ base="light"
 # # Font color for the page.
 # textColor = "#D4D6ED" #black
 
---------------------------------------------
+# --------------------------------------------
 
 /* Change background color to sky blue */
 body {
