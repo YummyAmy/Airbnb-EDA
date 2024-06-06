@@ -12,7 +12,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, confu
 
 # Function to load data from GitHub
 def load_data_from_github():
-    base_url = "https://github.com/YummyAmy/Airbnb-EDA/tree/main/archive%20(3)"
+    base_url = "https://raw.githubusercontent.com/YummyAmy/Airbnb-EDA/main/archive%20(3)/"
     file_paths = {
         'circuits': base_url + 'circuits.csv',
         'constructor_results': base_url + 'constructor_results.csv',
