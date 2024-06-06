@@ -110,7 +110,7 @@ with tab1:
     # st.sidebar.markdown('<a href="mailto:ameikpe@yahoo.com">E-mail</a>', unsafe_allow_html=True)
     # st.sidebar.markdown("[Tableau Profile](https://public.tableau.com/app/profile/amyu)")
     st.sidebar.markdown("[CoRise Course](https://uplimit.com/course/intro-to-numpy-and-pandas)")
-    st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
+    # st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
 
 # Tab 2: F1 Analysis
 with tab2:
