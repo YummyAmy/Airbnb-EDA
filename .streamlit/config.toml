@@ -1,46 +1,46 @@
 [theme]
 base="light"
-# # Used to style primary interface elements. It's the color displayed most frequently across your app's
-# # screens and components. Examples of widgets using this color are st.slider and st.checkbox.
-# primaryColor = "#FF4B4B" #ash green
+# Used to style primary interface elements. It's the color displayed most frequently across your app's
+# screens and components. Examples of widgets using this color are st.slider and st.checkbox.
+primaryColor = "#FF4B4B" #ash green
 
-# # Background color for the main container.
-# backgroundColor = "#324632" #light green
+# Background color for the main container.
+backgroundColor = "#324632" #light green
 
-# # Used as the background for most widgets. Examples of widgets with this background are st.sidebar
-# secondaryBackgroundColor =  "#2E3B2E"
+# Used as the background for most widgets. Examples of widgets with this background are st.sidebar
+secondaryBackgroundColor =  "#2E3B2E"
 
-# # Font color for the page.
-# textColor = "#D4D6ED" #black
+# Font color for the page.
+textColor = "#D4D6ED" #black
 
 # --------------------------------------------
 
-/* Change background color to sky blue */
-body {
-    background-color: #87CEEB; /* Sky blue background color */
-}
+# /* Change background color to sky blue */
+# body {
+#     background-color: #87CEEB; /* Sky blue background color */
+# }
 
-/* Change text color to red */
-body {
-    color: #FF0000; /* Red text color */
-}
+# /* Change text color to red */
+# body {
+#     color: #FF0000; /* Red text color */
+# }
 
-/* Change header color to red */
-header {
-    background-color: #FF0000; /* Red header color */
-}
+# /* Change header color to red */
+# header {
+#     background-color: #FF0000; /* Red header color */
+# }
 
-/* Change sidebar background color to sky blue */
-.css-1d391kg {
-    background-color: #87CEEB; /* Sky blue sidebar background color */
-}
+# /* Change sidebar background color to sky blue */
+# .css-1d391kg {
+#     background-color: #87CEEB; /* Sky blue sidebar background color */
+# }
 
-/* Change button color to red */
-.css-1cpxqw2 a {
-    background-color: #FF0000; /* Red button color */
-    color: #ffffff; /* White button text color */
-}
+# /* Change button color to red */
+# .css-1cpxqw2 a {
+#     background-color: #FF0000; /* Red button color */
+#     color: #ffffff; /* White button text color */
+# }
 
-.css-1cpxqw2 a:hover {
-    background-color: #FF6347; /* Tomato red hover color */
-}
+# .css-1cpxqw2 a:hover {
+#     background-color: #FF6347; /* Tomato red hover color */
+# }
