@@ -120,25 +120,26 @@ with tab2:
     dataframes = load_data_from_github()
 
     # Inspect data
-    st.subheader("Data Inspection")
-    def inspect_data(dataframes):
-        inspection_results = {}
-        for name, df in dataframes.items():
-            inspection_results[name] = {
-                'shape': df.shape,
-                'missing_values': df.isnull().sum(),
-            }
-        return inspection_results
+    # st.subheader("Data Inspection")
+    # def inspect_data(dataframes):
+    #     inspection_results = {}
+    #     for name, df in dataframes.items():
+    #         inspection_results[name] = {
+    #             'shape': df.shape,
+    #             'missing_values': df.isnull().sum(),
+    #         }
+    #     return inspection_results
 
-    inspection_results = inspect_data(dataframes)
-    st.write("Data Inspection Results:")
-    st.write(inspection_results)
+    # inspection_results = inspect_data(dataframes)
+    # st.write("Data Inspection Results:")
+    # st.write(inspection_results)
 
     # Driver nationality distribution
+    st.subheader("Exploration of datasets")
     st.subheader("Driver Nationality Distribution")
     drivers = dataframes['drivers']
     nationality_distribution = drivers['nationality'].value_counts()
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(8, 4))
     sns.barplot(x=nationality_distribution.values, y=nationality_distribution.index)
     plt.title('Nationality Distribution of Drivers')
     plt.xlabel('Number of drivers')
@@ -227,7 +228,7 @@ with tab2:
     results_numeric = results.select_dtypes(include=['float64', 'int64'])
     corr = results_numeric.corr()
 
-    plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(8, 6))
     ax = sns.heatmap(corr, annot=False, cmap='coolwarm', linewidths=0.5, cbar_kws={"shrink": .8})
     for i in range(corr.shape[0]):
         for j in range(corr.shape[1]):
@@ -249,7 +250,7 @@ with tab2:
     correlation = performance['avg_pit_stop_duration'].corr(performance['positionOrder'])
     st.write(f"Correlation between Average Pit Stop Duration and Race Position Order: {correlation}")
 
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(8, 4))
     plt.scatter(performance['avg_pit_stop_duration'], performance['positionOrder'], alpha=0.6)
     plt.title('Correlation Between Average Pit Stop Duration and Race Position Order')
     plt.xlabel('Average Pit Stop Duration (milliseconds)')
