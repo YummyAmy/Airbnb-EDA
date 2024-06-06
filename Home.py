@@ -86,7 +86,7 @@ with tab1:
     """)
 
     try:
-        img_f1 = Image.open("Images for F1/Ferrari_Formula_1_lineup_at_the_Nürburgring.jpg"")
+        img_f1 = Image.open("Images for F1/Ferrari_Formula_1_lineup_at_the_Nürburgring.jpg")
         new_image_f1 = img_f1.resize((900, 600))
         st.image(new_image_f1, caption='F1 Drivers', use_column_width="always")
     except FileNotFoundError:
@@ -142,9 +142,9 @@ with tab1:
     st.sidebar.markdown("[CoRise Course](https://uplimit.com/course/intro-to-numpy-and-pandas)")
     st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
 
-# Call the function
-if __name__ == '__main__':
-    home()
+# # Call the function
+# if __name__ == '__main__':
+#     home()
 
 # import streamlit as st
 # from PIL import Image
