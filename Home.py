@@ -62,6 +62,38 @@
 
 import streamlit as st
 from PIL import Image
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix
+
+# Function to load data from GitHub
+def load_data_from_github():
+    base_url = "https://raw.githubusercontent.com/yourusername/yourrepo/main/path/to/csv/"
+    file_paths = {
+        'circuits': base_url + 'circuits.csv',
+        'constructor_results': base_url + 'constructor_results.csv',
+        'constructor_standings': base_url + 'constructor_standings.csv',
+        'constructors': base_url + 'constructors.csv',
+        'driver_standings': base_url + 'driver_standings.csv',
+        'races': base_url + 'races.csv',
+        'qualifying': base_url + 'qualifying.csv',
+        'pit_stops': base_url + 'pit_stops.csv',
+        'lap_times': base_url + 'lap_times.csv',
+        'drivers': base_url + 'drivers.csv',
+        'status': base_url + 'status.csv',
+        'sprint_results': base_url + 'sprint_results.csv',
+        'seasons': base_url + 'seasons.csv',
+        'results': base_url + 'results.csv'
+    }
+
+    dataframes = {name: pd.read_csv(url) for name, url in file_paths.items()}
+    return dataframes
 
 # Set page configuration
 st.set_page_config(
