@@ -90,7 +90,7 @@ def home():
         ## F1 Driver Performance Analysis
         Creating a decision model to support the hypothesis on Formula 1 drivers' performances. This section includes metrics such as win rates, race participation, and performance over time. It leverages regression models to predict win rates and provides insightful visualizations.
     """)
-    img_f1 = Image.open("/Users/yummy/Desktop/Clicked/Images/Ferrari_Formula_1_lineup_at_the_Nürburgring.jpg")
+    img_f1 = Image.open("Images for F1/Ferrari_Formula_1_lineup_at_the_Nürburgring.jpg")
     new_image_f1 = img_f1.resize((900, 600))
     st.image(new_image_f1, caption='F1 Drivers', use_column_width="always")
 
