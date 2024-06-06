@@ -66,20 +66,14 @@ from PIL import Image
 # Set page configuration
 st.set_page_config(
     page_title="Home",
-    page_icon=":house:",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Set theme
-hide_decoration_bar_style = '''
-    <style>
-        header {visibility: hidden;}
-    </style>
-'''
+# Tabs at the top
+tab1, tab2, tab3 = st.tabs(["Home", "F1 Analysis", "Airbnb Analysis"])
 
-# Define function for each page
-def home():
+with tab1:
     st.markdown("# Exploratory Data Analysis Platform")
     st.write("""
         This platform hosts multiple exploratory data analysis projects:
@@ -90,17 +84,25 @@ def home():
         ## F1 Driver Performance Analysis
         Creating a decision model to support the hypothesis on Formula 1 drivers' performances. This section includes metrics such as win rates, race participation, and performance over time. It leverages regression models to predict win rates and provides insightful visualizations.
     """)
-    img_f1 = Image.open("Images for F1/Ferrari_Formula_1_lineup_at_the_Nürburgring.jpg")
-    new_image_f1 = img_f1.resize((900, 600))
-    st.image(new_image_f1, caption='F1 Drivers', use_column_width="always")
+
+    try:
+        img_f1 = Image.open("Images for F1/Ferrari_Formula_1_lineup_at_the_Nürburgring.jpg"")
+        new_image_f1 = img_f1.resize((900, 600))
+        st.image(new_image_f1, caption='F1 Drivers', use_column_width="always")
+    except FileNotFoundError:
+        st.error("F1 image not found. Please check the file path.")
 
     st.write("""
         ## Airbnb Listings Analysis
         This analysis helps visitors make informed choices about Airbnb listings in Amsterdam by examining various aspects such as price, location, and availability. It includes interactive visualizations and filter options to explore the data.
     """)
-    img_airbnb = Image.open("Images/Luxury-Airbnb-Apartment-Amsterdam.jpg")
-    new_image_airbnb = img_airbnb.resize((900, 600))
-    st.image(new_image_airbnb, caption='Luxury Airbnb apartment', use_column_width="always")
+
+    try:
+        img_airbnb = Image.open("Images/Luxury-Airbnb-Apartment-Amsterdam.jpg")
+        new_image_airbnb = img_airbnb.resize((900, 600))
+        st.image(new_image_airbnb, caption='Luxury Airbnb apartment', use_column_width="always")
+    except FileNotFoundError:
+        st.error("Airbnb image not found. Please check the file path.")
 
     st.markdown(
         """
@@ -117,13 +119,12 @@ def home():
         ### Week 1
         - Exploratory data analysis using Numpy
         - Data cleaning and analysis
-        - Exploring Amsterdam Airbnb dataset with filters like location and price range
+        - Exploring Amsterdam Airbnb dataset using filters (location and price range)
         - Download option for filtered data
-        - Web app development and deployment on Streamlit
         
         ### Week 2
         - Exploratory data analysis using Pandas
-        - Interactive visuals for various Airbnb listing filters
+        - Interactive visuals for Airbnb listing using filters
         - Map visualization
         - Multiselect filter options
         - Theme and multi-page configuration
@@ -144,6 +145,91 @@ def home():
 # Call the function
 if __name__ == '__main__':
     home()
+
+# import streamlit as st
+# from PIL import Image
+
+# # Set page configuration
+# st.set_page_config(
+#     page_title="Home",
+#     page_icon=":house:",
+#     layout="wide",
+#     initial_sidebar_state="expanded"
+# )
+
+# # Set theme
+# hide_decoration_bar_style = '''
+#     <style>
+#         header {visibility: hidden;}
+#     </style>
+# '''
+
+# # Define function for each page
+# def home():
+#     st.markdown("# Exploratory Data Analysis Platform")
+#     st.write("""
+#         This platform hosts multiple exploratory data analysis projects:
+#         1. **Decision Modeling on Formula 1 Drivers**
+#         2. **Airbnb Listings Analysis**
+#     """)
+#     st.write("""
+#         ## F1 Driver Performance Analysis
+#         Creating a decision model to support the hypothesis on Formula 1 drivers' performances. This section includes metrics such as win rates, race participation, and performance over time. It leverages regression models to predict win rates and provides insightful visualizations.
+#     """)
+#     img_f1 = Image.open("Images for F1/Ferrari_Formula_1_lineup_at_the_Nürburgring.jpg")
+#     new_image_f1 = img_f1.resize((900, 600))
+#     st.image(new_image_f1, caption='F1 Drivers', use_column_width="always")
+
+#     st.write("""
+#         ## Airbnb Listings Analysis
+#         This analysis helps visitors make informed choices about Airbnb listings in Amsterdam by examining various aspects such as price, location, and availability. It includes interactive visualizations and filter options to explore the data.
+#     """)
+#     img_airbnb = Image.open("Images/Luxury-Airbnb-Apartment-Amsterdam.jpg")
+#     new_image_airbnb = img_airbnb.resize((900, 600))
+#     st.image(new_image_airbnb, caption='Luxury Airbnb apartment', use_column_width="always")
+
+#     st.markdown(
+#         """
+#         ### Summary of Projects:
+#         ## F1 Driver Performance Analysis
+#         - Exploratory Analysis of Formula 1 datasets
+#         - Correlation Matrices of datasets
+#         - Evaluating driver performance metrics
+#         - Regression models to predict win rates
+#         - Visualizations of driver statistics and performance trends
+#         - Export functionality for top driver data
+
+#         ## Airbnb Listings Analysis
+#         ### Week 1
+#         - Exploratory data analysis using Numpy
+#         - Data cleaning and analysis
+#         - Exploring Amsterdam Airbnb dataset with filters like location and price range
+#         - Download option for filtered data
+#         - Web app development and deployment on Streamlit
+        
+#         ### Week 2
+#         - Exploratory data analysis using Pandas
+#         - Interactive visuals for various Airbnb listing filters
+#         - Map visualization
+#         - Multiselect filter options
+#         - Theme and multi-page configuration
+#         - Download option for filtered CSV data
+#         - Web app development and deployment
+#         """
+#     )
+
+#     st.sidebar.title("Connect")
+#     st.sidebar.markdown("[Linktree](https://linktr.ee/ameusifoh)")
+#     st.sidebar.markdown("[LinkedIn](https://www.linkedin.com/in/ameti-obong-u-395a25111/)")
+#     st.sidebar.markdown("[Clicked](https://www.clicked.com/browse-experiences)")
+#     # st.sidebar.markdown('<a href="mailto:ameikpe@yahoo.com">E-mail</a>', unsafe_allow_html=True)
+#     # st.sidebar.markdown("[Tableau Profile](https://public.tableau.com/app/profile/amyu)")
+#     st.sidebar.markdown("[CoRise Course](https://uplimit.com/course/intro-to-numpy-and-pandas)")
+#     st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
+
+# # Call the function
+# if __name__ == '__main__':
+#     home()
 
 #def week2():
  #   st.markdown("# Week 2")
