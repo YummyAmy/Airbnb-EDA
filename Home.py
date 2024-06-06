@@ -71,7 +71,7 @@ st.set_page_config(
 )
 
 # Tabs at the top
-tab1, tab2, tab3 = st.tabs(["Home", "F1 Analysis", "Airbnb Analysis"])
+tab1, tab2, tab3 = st.tabs(["Home", "Decision Modeling with Formula 1 Datasets", "Airbnb Listings Analysis"])
 
 with tab1:
     st.markdown("# Exploratory Data Analysis Platform")
@@ -87,7 +87,7 @@ with tab1:
 
     try:
         img_f1 = Image.open("Images for F1/Ferrari_Formula_1_lineup_at_the_Nürburgring.jpg")
-        new_image_f1 = img_f1.resize((900, 600))
+        new_image_f1 = img_f1.resize((800, 400))
         st.image(new_image_f1, caption='F1 Drivers', use_column_width="always")
     except FileNotFoundError:
         st.error("F1 image not found. Please check the file path.")
@@ -99,7 +99,7 @@ with tab1:
 
     try:
         img_airbnb = Image.open("Images/Luxury-Airbnb-Apartment-Amsterdam.jpg")
-        new_image_airbnb = img_airbnb.resize((900, 600))
+        new_image_airbnb = img_airbnb.resize((800, 400))
         st.image(new_image_airbnb, caption='Luxury Airbnb apartment', use_column_width="always")
     except FileNotFoundError:
         st.error("Airbnb image not found. Please check the file path.")
