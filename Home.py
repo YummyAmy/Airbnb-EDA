@@ -263,23 +263,21 @@ with tab2:
 
     # Linear regression
     st.subheader("Linear Regression")
+    
     # Calculate the total number of races for each driver
-driver_races = results.groupby('driverId')['raceId'].count().reset_index()
-driver_races.rename(columns={'raceId': 'total_races'}, inplace=True)
-
-# Calculate the total number of wins for each driver
-driver_wins = results[results['positionOrder'] == 1].groupby('driverId')['raceId'].count().reset_index()
-driver_wins.rename(columns={'raceId': 'total_wins'}, inplace=True)
-
-# Merge total races and total wins dataframes
-driver_performance = driver_races.merge(driver_wins, on='driverId', how='left')
-driver_performance['total_wins'].fillna(0, inplace=True)  # Fill NaNs with 0 for drivers with no wins
-
-# Calculate win rate
-driver_performance['win_rate'] = driver_performance['total_wins'] / driver_performance['total_races']
-
-# Merge with drivers dataset to get driver details
-driver_performance = driver_performance.merge(drivers[['driverId', 'forename', 'surname', 'dob']], on='driverId')
+    driver_races = results.groupby('driverId')['raceId'].count().reset_index()
+    driver_races.rename(columns={'raceId': 'total_races'}, inplace=True)
+    
+    # Calculate the total number of wins for each driver
+    driver_wins = results[results['positionOrder'] == 1].groupby('driverId')['raceId'].count().reset_index()
+    driver_wins.rename(columns={'raceId': 'total_wins'}, inplace=True)
+    
+    # Merge total races and total wins dataframes
+    driver_performance = driver_races.merge(driver_wins, on='driverId', how='left')
+    driver_performance['total_wins'].fillna(0, inplace=True)  # Fill NaNs with 0 for drivers with no wins
+    # Calculate win rate
+    driver_performance['win_rate'] = driver_performance['total_wins'] / driver_performance['total_races']
+    driver_performance = driver_performance.merge(drivers[['driverId', 'forename', 'surname', 'dob']], on='driverId')
 
 # Ensure 'dob' column exists in driver_performance
 if 'dob' in driver_performance.columns:
