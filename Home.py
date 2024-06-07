@@ -349,8 +349,9 @@ with tab3:
     st.header("Airbnb Listings Analysis")
 
     # Load Week_1.py and Week_2.py as separate sections within the tab
-    exec(open("pages/Week_1.py").read())
-    exec(open("pages/Week_2.py").read())
+    exec(open("pages/Week_1.py").read(), globals()) 
+    exec(open("pages/Week_2.py").read(), globals())
+
 
 # Call the function
 if __name__ == '__main__':
