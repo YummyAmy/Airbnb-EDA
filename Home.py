@@ -349,8 +349,16 @@ with tab3:
     st.header("Airbnb Listings Analysis")
 
     # Load Week_1.py and Week_2.py as separate sections within the tab
-    exec(open("pages/1_📍_EDA_using_Numpy.py").read(), globals())
-    exec(open("pages/Week_2.py").read(), globals())
+    st.subheader("Week 1 Analysis")
+    with open("pages/1_📍_EDA_using_Numpy.py") as f:
+        exec(f.read(), globals())
+    
+    # Execute Week 2 Analysis
+    st.subheader("Week 2 Analysis")
+    with open("pages/Week_2.py") as f:
+        exec(f.read(), globals())
+    # exec(open("pages/1_📍_EDA_using_Numpy.py").read(), globals())
+    # exec(open("pages/Week_2.py").read(), globals())
 
 
 # Call the function
