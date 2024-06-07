@@ -263,18 +263,41 @@ with tab2:
 
     # Linear regression
     st.subheader("Linear Regression")
+    # Calculate the total number of races for each driver
+driver_races = results.groupby('driverId')['raceId'].count().reset_index()
+driver_races.rename(columns={'raceId': 'total_races'}, inplace=True)
+
+# Calculate the total number of wins for each driver
+driver_wins = results[results['positionOrder'] == 1].groupby('driverId')['raceId'].count().reset_index()
+driver_wins.rename(columns={'raceId': 'total_wins'}, inplace=True)
+
+# Merge total races and total wins dataframes
+driver_performance = driver_races.merge(driver_wins, on='driverId', how='left')
+driver_performance['total_wins'].fillna(0, inplace=True)  # Fill NaNs with 0 for drivers with no wins
+
+# Calculate win rate
+driver_performance['win_rate'] = driver_performance['total_wins'] / driver_performance['total_races']
+
+# Merge with drivers dataset to get driver details
+driver_performance = driver_performance.merge(drivers[['driverId', 'forename', 'surname', 'dob']], on='driverId')
+
+# Ensure 'dob' column exists in driver_performance
+if 'dob' in driver_performance.columns:
     driver_performance['dob'] = pd.to_datetime(driver_performance['dob'])
     driver_performance['age'] = 2024 - driver_performance['dob'].dt.year
+
     features = ['total_races', 'total_wins', 'age']
     target = 'win_rate'
     X = driver_performance[features]
     y = driver_performance[target]
+
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     model = LinearRegression()
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
     mse = mean_squared_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
+
     st.write(f"Mean Squared Error: {mse}")
     st.write(f"R-squared: {r2}")
     coefficients = pd.DataFrame(model.coef_, features, columns=['Coefficient'])
@@ -289,6 +312,8 @@ with tab2:
     plt.plot([0, 1], [0, 1], color='red', linestyle='--')
     plt.tight_layout()
     st.pyplot(plt)
+else:
+    st.error("'dob' column not found in driver_performance DataFrame.")
 
     # Decision Tree Model
     st.subheader("Decision Tree Model")
@@ -319,6 +344,7 @@ with tab2:
     plt.figure(figsize=(14, 5))
     plot_tree(model, feature_names=features, class_names=['Not Win', 'Win'], filled=True, rounded=True, fontsize=10)
     st.pyplot(plt)
+
 
 # Tab 3: Airbnb Listings Analysis
 with tab3:
