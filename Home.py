@@ -348,18 +348,19 @@ else:
 with tab3:
     st.header("Airbnb Listings Analysis")
 
-    # Load Week_1.py and Week_2.py as separate sections within the tab
-    st.subheader("Week 1 Analysis")
-    with open("pages/1_📍_EDA_using_Numpy.py") as f:
-        exec(f.read(), globals())
-    
-    # Execute Week 2 Analysis
-    st.subheader("Week 2 Analysis")
-    with open("pages/Week_2.py") as f:
-        exec(f.read(), globals())
-    # exec(open("pages/1_📍_EDA_using_Numpy.py").read(), globals())
-    # exec(open("pages/Week_2.py").read(), globals())
+    # Tab 3: Airbnb Listings Analysis
+with tab3:
+    st.header("Airbnb Listings Analysis")
 
+    # Week 1 Analysis
+    st.subheader("Week 1 Analysis")
+    from pages.1_📍_EDA_using_Numpy import week_1_analysis
+    week_1_analysis()
+
+    # Week 2 Analysis
+    st.subheader("Week 2 Analysis")
+    from pages.Week_2 import week_2_analysis
+    week_2_analysis()
 
 # Call the function
 if __name__ == '__main__':
