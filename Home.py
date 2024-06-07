@@ -320,6 +320,14 @@ with tab2:
     plot_tree(model, feature_names=features, class_names=['Not Win', 'Win'], filled=True, rounded=True, fontsize=10)
     st.pyplot(plt)
 
+# Tab 3: Airbnb Listings Analysis
+with tab3:
+    st.header("Airbnb Listings Analysis")
+
+    # Load Week_1.py and Week_2.py as separate sections within the tab
+    exec(open("pages/Week_1.py").read())
+    exec(open("pages/Week_2.py").read())
+
 # Call the function
 if __name__ == '__main__':
     st.set_page_config(page_title="Machine Learning and Exploratory Data Analysis Platform", layout="wide")
